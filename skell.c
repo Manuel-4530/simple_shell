@@ -1,13 +1,13 @@
 #include "shell.h"
 #include <sys/wait.h>
-
-void skell(char **argv, char **env);
+{
+int skell(char **argv, char **env)
 	{
 	char *string = NULL;
 	int x, status;
 	size_t n=0;
 	ssize_t num_char;
-	char *argv[] = (NULL, NULL);
+	/*char *argv[] = (NULL, NULL);*/ 
 	pid_t kid_pid;
 	
 	while (1)
@@ -20,11 +20,11 @@ void skell(char **argv, char **env);
 			free(string);
 			exit(EXIT_FAILURE);
 		}
-		x=0
-			while(string[1])
+		x=0;
+			while(string[0])
 			{
 				if(string[x]== '\n')
-				string[x] = 0;
+				string[x] = '\0';
 				x++;
 			}
 		argv[0] = string;
@@ -36,9 +36,9 @@ void skell(char **argv, char **env);
 		}
 		if (kid_pid == 0)
 		{
-			if(execve (argv[0], argv, env) == -1)
-			printf("%s:No such file or directory \n" argv[0])
-		}
+			execve(argv[0], argv,env == -1);
+			printf("char*:No such file or directory \n");
+			}
 		else
 			wait(&status);
 	}
