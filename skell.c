@@ -17,10 +17,16 @@ void execute_command(char *command, char **env);
 void skell(char **env)
 {
 	char *input;
+
 	while (1)
 	{
-		printf("cisfun mzee$ ");
+		if (printf("cisfun mzee$ ") < 0)
+		{
+			perror("printf");
+			exit(EXIT_FAILURE);
+		}
 		fflush(stdout);
+
 		input = read_input();
 		process_input(input, env);
 		free(input);
@@ -46,7 +52,7 @@ char *read_input(void)
 	if (input[num_char - 1] == '\n')
 		input[num_char - 1] = '\0';
 
-	return input;
+	return (input);
 }
 
 /**
@@ -82,18 +88,20 @@ void execute_command(char *command, char **env)
 	else if (pid == 0)
 	{
 		char *args[2];
-		memset(args, 0, sizeof(args));
-		strcpy(args[0], command);
 
-		if (execve(args[0], args, env) == -1)
-		{
-			printf("%s: No such file or directory\n", args[0]);
-			exit(EXIT_FAILURE);
-		}
+		args[0] = command;
+		args[1] = NULL;
+
+	if (execve(args[0], args, env) == -1)
+	{
+		perror("No such file or directory");
+		exit(EXIT_FAILURE);
+	}
 	}
 	else
 	{
 		int status;
+
 		wait(&status);
 	}
 }
