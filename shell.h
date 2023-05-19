@@ -5,6 +5,6 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-void _skell(char *argv, char **env);
+void skell(char **env);
 
 #endif
