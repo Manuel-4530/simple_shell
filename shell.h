@@ -10,6 +10,8 @@ void skell(char **env);
 char *read_input(void);
 void process_input(char *input, char **env);
 void execute_command(char *command, char **env);
+void exit_shell(void);
+void env_shell(char **env);
 
 #endif
 
