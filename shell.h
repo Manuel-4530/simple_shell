@@ -6,5 +6,5 @@
 #include <sys/wait.h>
 
 void _skell(char *argv, char **env);
-
+int main(void);
 #endif
