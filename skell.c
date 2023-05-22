@@ -90,7 +90,7 @@ i++;
 }
 else if (strcmp(command, "exit") == 0)
 {
-printf("Exiting the shell...\n");
+printf("Exiting the shell Mzee...\n");
 exit(EXIT_SUCCESS);
 }
 else
