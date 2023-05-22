@@ -1,5 +1,5 @@
 #include "shell.h"
-int main(int argc char**argv)
+int main(int argc, char **argv)
 {
 	char*cmd = NULL;
 	*cmd_cpy = NULL;
@@ -10,7 +10,7 @@ int main(int argc char**argv)
 	char **argv  = NULL;
 	prinf("$");
 
-	if (gtline(& cmd; $n; stdin) == -1;
+	if (gtline(& cmd; stdin) == -1;
 		return = (1);
 	cmd_cpy = strdup(cmd);
 	token = strtok (cmd, delim);
