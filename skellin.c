@@ -7,7 +7,7 @@
 *
 * Return: Always 0.
 */
-int main(int argc, char **argv **env)
+int main(int argc, char **env)
 {
 (void)argc;
 (void)env;
@@ -18,4 +18,3 @@ skell(env); /* Call the skell function if no arguments are provided */
 }
 return (0);
 }
-
