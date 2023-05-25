@@ -1,40 +1,40 @@
 #include "shell.h"
-int main(int argc, char **argv)
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <unistd.h>
+
+/**
+ * execute_command_with_args - Execute a command with arguments.
+ * @command: The command string.
+ * @args: Array of arguments.
+ * @env: The environment variable.
+ */
+void execute_command_with_args(char *command, char **args, char **env)
 {
-	char*cmd = NULL;
-	*cmd_cpy = NULL;
-	*token = NULL;
-	char *delim = "\n";
-	size_t n = 0;
-	a = 0;
-	char **argv  = NULL;
-	prinf("$");
+    pid_t pid = fork();
 
-	if (gtline(& cmd; stdin) == -1;
-		return = (1);
-	cmd_cpy = strdup(cmd);
-	token = strtok (cmd, delim);
-	while (token)
-		token = strtok (NULL, delim);
-		argc++;
-	printf("%d\n", argc);
-	argv = malloc(sizeof(char*) * argc);
-	token = strtok(cmd_cpy, delim);
-	while (token)
-	{
-	     	argv[i] = token;
-	     	token = strtok(NULL, delim);
-		a++;
-	}
-	argv[i] = NULL;
-
-	a = 0;
-	while (argv[a])
-		printf("%s\n", argv[a++]);
-
-	free(cmd);
-	free(cmd_cpy);
-	free(argv);
-
-	return (0);
+    if (pid == -1)
+    {
+        perror("fork");
+        exit(EXIT_FAILURE);
+    }
+    else if (pid == 0)
+    {
+        /* Child process */
+        if (execve(command, args, env) == -1)
+        {
+            perror("execve");
+            exit(EXIT_FAILURE);
+        }
+    }
+    else
+    {
+        /* Parent process */
+        int status;
+        waitpid(pid, &status, 0);
+    }
 }
+
