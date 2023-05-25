@@ -16,16 +16,16 @@ void execute_command(char *command, char **env);
 */
 void skell(char **env)
 {
-char *input;
+    char *input;
 
-while (1)
-{
-write(STDOUT_FILENO, "cisfun mzee$ ", 13);
+    while (1)
+    {
+        write(STDOUT_FILENO, "cisfun mzee$ ", 13);
 
-input = read_input();
-process_input(input, env);
-free(input);
-}
+        input = read_input();
+        process_input(input, env);
+        free(input);
+    }
 }
 
 /**
@@ -34,20 +34,20 @@ free(input);
 */
 char *read_input(void)
 {
-char *input = NULL;
-size_t n = 0;
-ssize_t num_char = getline(&input, &n, stdin);
+    char *input = NULL;
+    size_t n = 0;
+    ssize_t num_char = getline(&input, &n, stdin);
 
-if (num_char == -1)
-{
-free(input);
-exit(EXIT_FAILURE);
-}
+    if (num_char == -1)
+    {
+        free(input);
+        exit(EXIT_FAILURE);
+    }
 
-if (input[num_char - 1] == '\n')
-input[num_char - 1] = '\0';
+    if (input[num_char - 1] == '\n')
+        input[num_char - 1] = '\0';
 
-return (input);
+    return (input);
 }
 
 /**
@@ -57,18 +57,18 @@ return (input);
 */
 void process_input(char *input, char **env)
 {
-char *command = strtok(input, " \t\n");
+    char *command = strtok(input, " \t\n");
 
-if (strcmp(command, "env") == 0)
-{
-env_shell(env);
-}
+    if (strcmp(command, "env") == 0)
+    {
+        env_shell(env);
+    }
 
-while (command != NULL)
-{
-execute_command(command, env);
-command = strtok(NULL, " \t\n");
-}
+    while (command != NULL)
+    {
+        execute_command(command, env);
+        command = strtok(NULL, " \t\n");
+    }
 }
 
 /**
@@ -78,49 +78,50 @@ command = strtok(NULL, " \t\n");
 */
 void execute_command(char *command, char **env)
 {
-if (strcmp(command, "env") == 0)
-{
-int i = 0;
+    if (strcmp(command, "env") == 0)
+    {
+        int i = 0;
 
-while (env[i] != NULL)
-{
-printf("%s\n", env[i]);
-i++;
-}
-}
-else if (strcmp(command, "exit") == 0)
-{
-printf("Exiting the shell Mzee...\n");
-exit(EXIT_SUCCESS);
-}
-else
-{
-pid_t pid;
+        while (env[i] != NULL)
+        {
+            write(STDOUT_FILENO, env[i], strlen(env[i]));
+            write(STDOUT_FILENO, "\n", 1);
+            i++;
+        }
+    }
+    else if (strcmp(command, "exit") == 0)
+    {
+        write(STDOUT_FILENO, "Exiting the shell Mzee...\n", 27);
+        exit(EXIT_SUCCESS);
+    }
+    else
+    {
+        pid_t pid;
 
-pid = fork();
-if (pid == -1)
-{
-perror("fork");
-exit(EXIT_FAILURE);
-}
-else if (pid == 0)
-{
-char *args[2];
+        pid = fork();
+        if (pid == -1)
+        {
+            perror("fork");
+            exit(EXIT_FAILURE);
+        }
+        else if (pid == 0)
+        {
+            char *args[2];
 
-args[0] = command;
-args[1] = NULL;
+            args[0] = command;
+            args[1] = NULL;
 
-if (execve(args[0], args, env) == -1)
-{
-perror("No such file or directory");
-exit(EXIT_FAILURE);
-}
-}
-else
-{
-int status;
-wait(&status);
-}
-}
+            if (execve(args[0], args, env) == -1)
+            {
+                perror("No such file or directory");
+                exit(EXIT_FAILURE);
+            }
+        }
+        else
+        {
+            int status;
+            wait(&status);
+        }
+    }
 }
 
