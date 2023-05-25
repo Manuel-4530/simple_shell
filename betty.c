@@ -3,11 +3,11 @@
 #include <unistd.h>
 
 /**
-* main - Entry point of the program
+* bet_main - Entry point of the program
 * Description: This program prints the name "ALX student"
 * Return: Always 0 (on successful execution)
 */
-int main(void)
+int bet_main(void)
 {
 char name[] = "ALX student";
 

@@ -3,14 +3,14 @@
 #include <unistd.h>
 
 /**
-* main - Entry point of the program
+* my_main - Entry point of the program
 * Description: Allows user input of a name and age.
 * Prints a message based on the age.
 *
 * Return: Always 0 (Success)
 */
 
-int main(void)
+int my_main(void)
 {
 char name[100];
 int age;

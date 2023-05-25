@@ -80,5 +80,19 @@ void handle_command_with_args(char **args, char **env);
  */
 int handle_main(void);
 
+/**
+ * my_main - Entry point of the program
+ *
+ * Return: Always 0 (success)
+ */
+int my_main(void);
+
+/**
+ * bet_main - Entry point of the program
+ *
+ * Return: Always 0 (Success)
+ */
+int bet_main(void);
+
 #endif /* _SHELL_H_ */
 
