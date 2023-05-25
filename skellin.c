@@ -1,5 +1,5 @@
 #include "shell.h"
-
+#include <sys/wait.h>
 /**
 * main - Entry point of the program.
 * @argc: The number of command line arguments.
@@ -7,7 +7,7 @@
 *
 * Return: Always 0.
 */
-int main(int argc, char **argv **env)
+int main(int argc, char **argv, char **env)
 {
 (void)argc;
 (void)env;
