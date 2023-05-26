@@ -39,20 +39,22 @@ waitpid(pid, &status, 0);
 }
 
 /**
-* handle_main - Main function to handle user input.
+* hhandle_main - Main function to handle user input.
+* @argc: The number of command-line arguments.
+* @argv: Array of command-line arguments.
+* @envp: Array of environment variables.
 *
 * Return: 0 on success, 1 on failure.
 */
-int handle_main(void)
+int hhandle_main(int argc, char **argv, char **envp)
 {
 char *cmd = NULL;
 char *cmd_cpy = NULL;
 char *token = NULL;
 char *delim = " \t\n";
 size_t n = 0;
-int argc = 0;
-char **args = NULL;
 int i = 0;
+char **args = NULL;
 
 if (getline(&cmd, &n, stdin) == -1)
 return (1);
@@ -80,8 +82,24 @@ args[i] = NULL;
 free(cmd);
 free(cmd_cpy);
 
+execute_command_with_args(argv[0], args, envp);
+
 free(args);
 
 return (0);
+}
+
+/**
+ * hanndle_main_program - Entry point of the program.
+ * @argc: Number of command-line arguments.
+ * @argv: Array of command-line arguments.
+ * @envp: Array of environment variables.
+ *
+ * Return: 0 (Success).
+ */
+
+int hanndle_main_program(int argc, char **argv, char **envp)
+{
+return (hhandle_main(argc, argv, envp));
 }
 

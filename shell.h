@@ -94,5 +94,9 @@ int my_main(void);
  */
 int bet_main(void);
 
+int hanndle_main_program(int argc, char **argv, char **envp);
+
+int hhandle_main(int argc, char **argv, char **envp);
+
 #endif /* _SHELL_H_ */
 
