@@ -1,16 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
 /**
- * main - Entry of the program
- *
- * Return: Always 0 (on successful execution)
- */
-int main(void)
+* bet_main - Entry point of the program
+* Description: This program prints the name "ALX student"
+* Return: Always 0 (on successful execution)
+*/
+int bet_main(void)
 {
-	char name[] = "ALX student";
+char name[] = "ALX student";
 
-	printf("Name: %s\n", name);
+/* Write "Name: " to standard output */
+write(STDOUT_FILENO, "Name: ", 6);
 
-	return (0);
+/* Write the content of 'name' to standard output */
+write(STDOUT_FILENO, name, sizeof(name) - 1);
+
+/* Write a newline character to standard output */
+write(STDOUT_FILENO, "\n", 1);
+
+return (0);
 }
 

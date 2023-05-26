@@ -84,13 +84,14 @@ int i = 0;
 
 while (env[i] != NULL)
 {
-printf("%s\n", env[i]);
+write(STDOUT_FILENO, env[i], strlen(env[i]));
+write(STDOUT_FILENO, "\n", 1);
 i++;
 }
 }
 else if (strcmp(command, "exit") == 0)
 {
-printf("Exiting the shell Mzee...\n");
+write(STDOUT_FILENO, "Exiting the shell Mzee...\n", 27);
 exit(EXIT_SUCCESS);
 }
 else
