@@ -20,7 +20,7 @@ char *input;
 
 while (1)
 {
-write(STDOUT_FILENO, "cisfun mzee$ ", 13);
+write(STDOUT_FILENO, "cisfun$ ", 8);
 
 input = read_input();
 process_input(input, env);
@@ -91,7 +91,7 @@ i++;
 }
 else if (strcmp(command, "exit") == 0)
 {
-write(STDOUT_FILENO, "Exiting the shell Mzee...\n", 27);
+write(STDOUT_FILENO, "Exiting the shell...\n", 27);
 exit(EXIT_SUCCESS);
 }
 else
